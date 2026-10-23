@@ -8,9 +8,9 @@ Dùng nhiều tài khoản Claude cùng lúc trên Mac — công việc, cá nh�
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-[![Video giới thiệu Multi Profile for Claude: bấm để xem trên YouTube](https://img.youtube.com/vi/W8z22g18PC8/maxresdefault.jpg)](https://www.youtube.com/watch?v=W8z22g18PC8)
+https://github.com/user-attachments/assets/7d8ea541-c14d-4aa0-b710-5af52cd09661
 
-▶ [Xem video giới thiệu 30 giây trên YouTube](https://www.youtube.com/watch?v=W8z22g18PC8)
+Nếu video không phát được ở đây, hãy [xem trên YouTube](https://www.youtube.com/watch?v=W8z22g18PC8).
 
 ## Tính năng
 
