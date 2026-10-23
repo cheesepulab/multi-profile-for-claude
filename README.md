@@ -8,6 +8,10 @@ Run several Claude accounts side by side on your Mac — work, personal, a clien
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
+[![Multi Profile for Claude intro video: click to watch on YouTube](https://img.youtube.com/vi/W8z22g18PC8/maxresdefault.jpg)](https://www.youtube.com/watch?v=W8z22g18PC8)
+
+▶ [Watch the 30-second intro on YouTube](https://www.youtube.com/watch?v=W8z22g18PC8)
+
 ## Features
 
 - **One app per account.** Each profile is its own Mac app (`Claude Work`, `Claude Personal`…) with its own Dock icon, Cmd-Tab entry, Spotlight result and colored letter badge. Open as many at once as you like.

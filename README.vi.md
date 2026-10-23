@@ -8,6 +8,10 @@ Dùng nhiều tài khoản Claude cùng lúc trên Mac — công việc, cá nh�
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
+[![Video giới thiệu Multi Profile for Claude: bấm để xem trên YouTube](https://img.youtube.com/vi/W8z22g18PC8/maxresdefault.jpg)](https://www.youtube.com/watch?v=W8z22g18PC8)
+
+▶ [Xem video giới thiệu 30 giây trên YouTube](https://www.youtube.com/watch?v=W8z22g18PC8)
+
 ## Tính năng
 
 - **Mỗi tài khoản một ứng dụng.** Mỗi hồ sơ là một ứng dụng Mac riêng (`Claude Work`, `Claude Personal`…) với biểu tượng Dock, mục Cmd-Tab, kết quả Spotlight và huy hiệu chữ cái có màu riêng. Mở bao nhiêu cái cùng lúc cũng được.
