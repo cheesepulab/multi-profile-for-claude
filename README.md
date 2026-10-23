@@ -1,5 +1,7 @@
 # Multi Profile for Claude
 
+**English** · [Tiếng Việt](README.vi.md)
+
 Run several Claude accounts side by side on your Mac — work, personal, a client — each in its own app with its own sign-in, chats and settings. Optionally get a terminal command per profile, such as `claude-work`, that runs Claude Code with that profile's account.
 
 [![Donate via VietQR](https://img.shields.io/badge/Donate-VietQR-2563EB)](#support)
