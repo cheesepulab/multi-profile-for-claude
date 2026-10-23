@@ -4,7 +4,7 @@
 
 Run several Claude accounts side by side on your Mac — work, personal, a client — each in its own app with its own sign-in, chats and settings. Optionally get a terminal command per profile, such as `claude-work`, that runs Claude Code with that profile's account.
 
-[![Donate via VietQR](https://img.shields.io/badge/Donate-VietQR-2563EB)](#support)
+[![Donate via VietQR](https://img.shields.io/badge/Donate-VietQR-2563EB)](DONATE.md)
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
@@ -97,17 +97,7 @@ Project settings (GitHub user, donation details, bundle ID) live in `scripts/con
 
 ## Support
 
-Multi Profile for Claude is free. If it saves you some account juggling, you can support it with a bank transfer. Scan the code with any Vietnamese banking app (VietQR, Napas 247), or transfer to the account below.
-
-<img src="Resources/donate-qr.png" alt="VietQR code for a transfer to TPBank account 0175 5161 701, NGUYEN MANH DUC" width="300">
-
-| | |
-| :- | :- |
-| Bank | TPBank |
-| Account name | NGUYEN MANH DUC |
-| Account number | 0175 5161 701 |
-
-The same code is in the app under **About and Donate…**. Bug reports and pull requests are welcome too.
+Multi Profile for Claude is free. If it saves you some account juggling, you can **[support it with a donation](DONATE.md)**. Bug reports and pull requests are welcome too.
 
 ## License
 

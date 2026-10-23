@@ -20,7 +20,7 @@ DONATE_ACCOUNT_NUMBER="0175 5161 701"
 
 BUNDLE_ID="io.github.${GITHUB_USER}.multiprofileforclaude"
 REPO_URL="https://github.com/${GITHUB_USER}/${REPO_NAME}"
-DONATE_URL="${REPO_URL}#support"
+DONATE_URL="${REPO_URL}/blob/main/DONATE.md"
 
 # Leave empty for ad-hoc signing. Set it in scripts/config.local.sh to sign with your
 # free "Apple Development" certificate instead.

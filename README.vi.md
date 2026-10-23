@@ -4,7 +4,7 @@
 
 Dùng nhiều tài khoản Claude cùng lúc trên Mac — công việc, cá nhân, khách hàng — mỗi tài khoản là một ứng dụng riêng với đăng nhập, cuộc trò chuyện và cài đặt riêng. Bạn cũng có thể tạo một lệnh terminal cho mỗi hồ sơ, ví dụ `claude-work`, để chạy Claude Code bằng tài khoản của hồ sơ đó.
 
-[![Ủng hộ qua VietQR](https://img.shields.io/badge/%E1%BB%A6ng%20h%E1%BB%99-VietQR-2563EB)](#support)
+[![Ủng hộ qua VietQR](https://img.shields.io/badge/%E1%BB%A6ng%20h%E1%BB%99-VietQR-2563EB)](DONATE.md#tieng-viet)
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
@@ -95,21 +95,9 @@ scripts/release.sh 0.1.0        # tệp zip + cask Homebrew trong dist/, in ra c
 
 Cài đặt của dự án (tài khoản GitHub, thông tin ủng hộ, bundle ID) nằm trong `scripts/config.sh`. Bản phát hành mặc định được ký ad-hoc. Để ký bằng chứng chỉ "Apple Development" miễn phí của Personal Team, chạy `scripts/signing-identities.sh` để xem team thật của từng chứng chỉ, rồi chép `scripts/config.local.sh.example` thành `scripts/config.local.sh` và điền `SIGN_IDENTITY`, `SIGN_TEAM_ID`. Quá trình build sẽ kiểm tra team của ứng dụng đã ký và dừng lại nếu không khớp.
 
-<a id="support"></a>
-
 ## Ủng hộ
 
-Multi Profile for Claude miễn phí. Nếu nó giúp bạn bớt phải đổi qua đổi lại tài khoản, bạn có thể ủng hộ bằng chuyển khoản. Quét mã bằng bất kỳ ứng dụng ngân hàng nào ở Việt Nam (VietQR, Napas 247), hoặc chuyển vào tài khoản bên dưới.
-
-<img src="Resources/donate-qr.png" alt="Mã VietQR chuyển khoản tới tài khoản TPBank 0175 5161 701, NGUYEN MANH DUC" width="300">
-
-| | |
-| :- | :- |
-| Ngân hàng | TPBank |
-| Tên tài khoản | NGUYEN MANH DUC |
-| Số tài khoản | 0175 5161 701 |
-
-Mã này cũng có trong ứng dụng, ở mục **About and Donate…**. Rất hoan nghênh báo lỗi và pull request.
+Multi Profile for Claude miễn phí. Nếu nó giúp bạn bớt phải đổi qua đổi lại tài khoản, bạn có thể **[ủng hộ dự án](DONATE.md#tieng-viet)**. Rất hoan nghênh báo lỗi và pull request.
 
 ## Giấy phép
 
