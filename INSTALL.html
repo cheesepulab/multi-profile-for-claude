@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Install Multi Profile for Claude</title>
+<meta name="description" content="How to install and set up Multi Profile for Claude on macOS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a narrow reading column with an on-page contents rail on wide screens; one column on phones. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #16181d;
+  --muted: #586070;
+  --line: #dde1e8;
+  --accent: #1f5fd6;
+  --accent-fill: #2563eb;
+  --accent-soft: #e7eefc;
+  --code-bg: #eef1f6;
+  --code-ink: #1b2333;
+  --warn-bg: #fff4e0;
+  --warn-line: #efcd8f;
+  --warn-ink: #6b3f00;
+  --ok: #15803d;
+  --p-blue: #2563eb;
+  --p-orange: #b45309;
+  --p-purple: #7c3aed;
+  --p-graphite: #52525b;
+  --tile: #1d1d1f;
+  --font-display: "Bricolage Grotesque", "SF Pro Display", system-ui, sans-serif;
+  --font-body: "Instrument Sans", -apple-system, "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1115; --surface: #171a20; --ink: #eceef2; --muted: #a2a8b5; --line: #2a2f38;
+    --accent: #7aa7ff; --accent-fill: #2563eb; --accent-soft: #1a2640;
+    --code-bg: #1c2028; --code-ink: #e3e8f2;
+    --warn-bg: #2b2210; --warn-line: #5c4415; --warn-ink: #f3cf8c; --ok: #4ade80;
+    --tile: #2a2a2e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1115; --surface: #171a20; --ink: #eceef2; --muted: #a2a8b5; --line: #2a2f38;
+  --accent: #7aa7ff; --accent-fill: #2563eb; --accent-soft: #1a2640;
+  --code-bg: #1c2028; --code-ink: #e3e8f2;
+  --warn-bg: #2b2210; --warn-line: #5c4415; --warn-ink: #f3cf8c; --ok: #4ade80;
+  --tile: #2a2a2e;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: 1.55rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.1rem; font-family: var(--font-body); font-weight: 600; }
+p { margin: 0; }
+code, kbd { font-family: var(--font-mono); font-size: 0.88em; }
+:not(pre) > code { background: var(--code-bg); color: var(--code-ink); padding: 0.1em 0.38em; border-radius: 5px; white-space: nowrap; }
+kbd { border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 0.05em 0.4em; background: var(--surface); }
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 56px;
+  padding-block: 40px 72px;
+}
+@media (max-width: 860px) { .page { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 24px 56px; } }
+
+/* Contents rail */
+.toc { position: sticky; top: 24px; align-self: start; display: flex; flex-direction: column; gap: 14px; }
+.toc-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc a { display: block; padding: 5px 10px; border-radius: 7px; color: var(--muted); text-decoration: none; font-size: 0.93rem; }
+.toc a:hover { background: var(--accent-soft); color: var(--ink); }
+.theme-toggle {
+  align-self: start; font: 500 0.85rem var(--font-body); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; min-height: 36px;
+}
+@media (max-width: 860px) {
+  .toc { position: static; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+  .toc nav { display: none; }
+}
+
+/* Header */
+.masthead { display: flex; flex-direction: column; gap: 18px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand svg { flex: none; }
+.brand-name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--muted); }
+.masthead h1 { font-size: clamp(2rem, 4.6vw, 3rem); letter-spacing: -0.02em; max-width: 18ch; }
+.lede { font-size: 1.12rem; color: var(--muted); max-width: 60ch; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 6px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: 0.9rem; }
+.dot { width: 22px; height: 22px; border-radius: 50%; color: #fff; font: 700 0.72rem/22px var(--font-body); text-align: center; flex: none; }
+
+main { display: flex; flex-direction: column; gap: 56px; min-width: 0; }
+section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 20px; }
+section > p, .prose { max-width: 66ch; }
+.eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+/* Requirements */
+.reqs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 700px) { .reqs { grid-template-columns: minmax(0, 1fr); } }
+.reqs li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.reqs strong { font-weight: 600; }
+.reqs span { color: var(--muted); font-size: 0.93rem; }
+
+/* Tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px; background: var(--code-bg); border-radius: 12px; align-self: start; }
+.tab {
+  font: 500 0.95rem var(--font-body); color: var(--muted); background: transparent; border: 0;
+  border-radius: 9px; padding: 8px 14px; cursor: pointer; min-height: 40px;
+}
+.tab[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12); }
+.panel { display: flex; flex-direction: column; gap: 16px; }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: flex; flex-direction: column; gap: 18px; }
+.steps > li { counter-increment: step; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 14px; }
+.steps > li::before {
+  content: counter(step); width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-body { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding-top: 3px; }
+
+/* Code */
+.code { position: relative; background: var(--code-bg); border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.code pre { margin: 0; padding: 14px 92px 14px 16px; overflow-x: auto; font: 0.9rem/1.6 var(--font-mono); color: var(--code-ink); white-space: pre; }
+.copy {
+  position: absolute; top: 8px; right: 8px; font: 500 0.8rem var(--font-body); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 7px; padding: 5px 10px; cursor: pointer; min-height: 32px;
+}
+.copy[data-done] { color: var(--ok); border-color: var(--ok); }
+
+/* Notes */
+.note { border-radius: 10px; padding: 12px 14px; background: var(--accent-soft); color: var(--ink); max-width: 66ch; }
+.note.warn { background: var(--warn-bg); border: 1px solid var(--warn-line); color: var(--warn-ink); }
+.note strong { font-weight: 600; }
+
+/* Menu bar illustration */
+.menubar {
+  display: flex; justify-content: flex-end; align-items: center; gap: 14px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 8px 14px; font-size: 0.85rem; color: var(--muted); max-width: 520px;
+}
+.menubar .lit { width: 20px; height: 20px; border-radius: 5px; background: var(--p-blue); color: #fff; font: 700 0.7rem/20px var(--font-body); text-align: center; outline: 2px solid var(--accent-soft); outline-offset: 2px; }
+
+/* Command table */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.95rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+
+/* Troubleshooting */
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0 16px; max-width: 72ch; }
+details + details { margin-top: -6px; }
+summary { cursor: pointer; padding: 13px 0; font-weight: 600; list-style-position: outside; }
+details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+details > div { display: flex; flex-direction: column; gap: 10px; padding-bottom: 14px; }
+
+.support { display: flex; flex-flow: row wrap; align-items: flex-start; gap: 24px; padding: 22px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); }
+.support img { width: 220px; max-width: 100%; height: auto; border-radius: 12px; flex: none; }
+.support-text { flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.bank { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 16px; margin: 0; }
+.bank dt { color: var(--muted); }
+.bank dd { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.copy-inline { font: 500 0.8rem var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 7px; padding: 4px 10px; cursor: pointer; min-height: 30px; }
+.copy-inline[data-done] { color: var(--ok); border-color: var(--ok); }
+footer { color: var(--muted); font-size: 0.88rem; border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-direction: column; gap: 6px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="toc">
+    <span class="toc-label">On this page</span>
+    <nav aria-label="Contents">
+      <ol>
+        <li><a href="#before">Before you start</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#first-launch">First launch</a></li>
+        <li><a href="#profile">Create a profile</a></li>
+        <li><a href="#sign-in">Sign in</a></li>
+        <li><a href="#terminal">Terminal commands</a></li>
+        <li><a href="#updates">After Claude updates</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#uninstall">Uninstall</a></li>
+        <li><a href="#support">Support</a></li>
+      </ol>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+      <span aria-hidden="true">◐</span><span id="theme-label">Theme: System</span>
+    </button>
+  </aside>
+
+  <main>
+    <header class="masthead">
+      <div class="brand">
+        <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+          <rect x="1" y="1" width="42" height="42" rx="10" fill="var(--tile)"></rect>
+          <circle cx="14" cy="22" r="7.2" fill="var(--p-blue)" stroke="var(--tile)" stroke-width="1.6"></circle>
+          <circle cx="22" cy="22" r="7.2" fill="var(--p-orange)" stroke="var(--tile)" stroke-width="1.6"></circle>
+          <circle cx="30" cy="22" r="7.2" fill="var(--p-purple)" stroke="var(--tile)" stroke-width="1.6"></circle>
+        </svg>
+        <span class="brand-name">Multi Profile for Claude · 0.1.0</span>
+      </div>
+      <h1>Install and set up Multi Profile for Claude</h1>
+      <p class="lede">Run several Claude accounts side by side on your Mac. Each profile gets its own app, sign-in and chats, plus an optional terminal command for Claude Code. Setup takes about five minutes.</p>
+      <div class="badges" aria-label="Example profiles">
+        <span class="badge"><span class="dot" style="background: var(--p-graphite)">D</span>Default — your original Claude</span>
+        <span class="badge"><span class="dot" style="background: var(--p-blue)">W</span>Claude Work</span>
+        <span class="badge"><span class="dot" style="background: var(--p-orange)">P</span>Claude Personal</span>
+      </div>
+    </header>
+
+    <section id="before" aria-labelledby="before-h">
+      <h2 id="before-h">Before you start</h2>
+      <ul class="reqs">
+        <li><strong>macOS 13 Ventura or later</strong><span>Apple silicon or Intel.</span></li>
+        <li><strong>Claude desktop app</strong><span>Installed in <code>/Applications</code>. <a href="https://claude.ai/download">Download Claude</a></span></li>
+        <li><strong>Claude Code (optional)</strong><span>Only needed for terminal commands like <code>claude-work</code>.</span></li>
+      </ul>
+      <p>Your existing Claude app becomes the <strong>Default</strong> profile. Multi Profile for Claude never changes it or its data.</p>
+    </section>
+
+    <section id="install" aria-labelledby="install-h">
+      <h2 id="install-h">Install</h2>
+      <div class="tabs" role="tablist" aria-label="Install method">
+        <button class="tab" role="tab" id="tab-brew" aria-controls="panel-brew" aria-selected="true">Homebrew</button>
+        <button class="tab" role="tab" id="tab-zip" aria-controls="panel-zip" aria-selected="false">Download</button>
+        <button class="tab" role="tab" id="tab-source" aria-controls="panel-source" aria-selected="false">Build from source</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-brew" aria-labelledby="tab-brew">
+        <p class="prose">One command installs the app into <code>/Applications</code>. Homebrew adds the tap the first time.</p>
+        <div class="code"><pre><code>brew install --cask manhduc-nguyen/tap/multi-profile-for-claude</code></pre></div>
+        <p class="note">The app is free and isn't notarized by Apple, so the cask clears macOS's download quarantine flag after installing. You can read the cask first at <a href="https://github.com/manhduc-nguyen/homebrew-tap">github.com/manhduc-nguyen/homebrew-tap</a>.</p>
+        <p class="prose">To update later:</p>
+        <div class="code"><pre><code>brew upgrade --cask multi-profile-for-claude</code></pre></div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-zip" aria-labelledby="tab-zip">
+        <ol class="steps">
+          <li><div class="step-body">
+            <p>Download <code>Multi-Profile-for-Claude-0.1.0.zip</code> from <a href="https://github.com/manhduc-nguyen/multi-profile-for-claude/releases">GitHub Releases</a>, unzip it and drag the app to <code>/Applications</code>.</p>
+          </div></li>
+          <li><div class="step-body">
+            <p>Because the app isn't notarized, macOS blocks it the first time. Clear the flag in Terminal:</p>
+            <div class="code"><pre><code>xattr -dr com.apple.quarantine "/Applications/Multi Profile for Claude.app"</code></pre></div>
+            <p>Or open the app once, then go to <strong>System Settings → Privacy &amp; Security</strong>, scroll down and click <strong>Open Anyway</strong>.</p>
+          </div></li>
+        </ol>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-source" aria-labelledby="tab-source">
+        <p class="prose">Needs Xcode 16 or later (or its command line tools with Swift 6). Apps you build yourself aren't quarantined, so they open without a warning.</p>
+        <div class="code"><pre><code>git clone https://github.com/manhduc-nguyen/multi-profile-for-claude.git
+cd multi-profile-for-claude
+scripts/install.sh</code></pre></div>
+        <p class="prose"><code>install.sh</code> builds the app and copies it to <code>~/Applications</code>, then opens it.</p>
+      </div>
+    </section>
+
+    <section id="first-launch" aria-labelledby="first-launch-h">
+      <h2 id="first-launch-h">First launch</h2>
+      <p>Multi Profile for Claude lives in the menu bar, not the Dock. After you open it, look for its icon near the clock. Once a profile is in front, the icon shows that profile's colored letter.</p>
+      <div class="menubar" aria-hidden="true">
+        <span>Wi‑Fi</span><span class="lit">W</span><span>Thu 23 Oct 10:42</span>
+      </div>
+      <p class="note">On a crowded menu bar, macOS may hide the icon. Go to <strong>System Settings → Menu Bar</strong> (or <strong>Control Center</strong> on older macOS) and allow Multi Profile for Claude.</p>
+    </section>
+
+    <section id="profile" aria-labelledby="profile-h">
+      <h2 id="profile-h">Create a profile</h2>
+      <ol class="steps">
+        <li><div class="step-body"><p>Click the menu bar icon and choose <strong>New Profile…</strong>.</p></div></li>
+        <li><div class="step-body"><p>Type a name, for example <em>Work</em>, and pick a color. The preview shows the icon you'll see in the Dock.</p></div></li>
+        <li><div class="step-body"><p>Keep <strong>Also create a terminal command</strong> checked if you use Claude Code. For <em>Work</em> the command is <code>claude-work</code>.</p></div></li>
+        <li><div class="step-body"><p>Click <strong>Create Profile</strong>. It copies Claude, sets the name and icon, signs the copy for your Mac and creates its data folder. This takes a few seconds and uses almost no extra disk space.</p></div></li>
+      </ol>
+      <p>The new app, <strong>Claude Work</strong>, appears in <code>~/Applications/Claude Profiles</code>, in Spotlight and in Launchpad. Open as many profiles at once as you like and switch with <kbd>⌘</kbd> <kbd>Tab</kbd>.</p>
+    </section>
+
+    <section id="sign-in" aria-labelledby="sign-in-h">
+      <h2 id="sign-in-h">Sign in to each profile</h2>
+      <p>Choose <strong>Open and Sign In</strong> after creating a profile, or <strong>Sign In…</strong> in the Profiles window. For the next 10 minutes, sign-in links from your browser go to that profile instead of your original Claude app.</p>
+      <ol class="steps">
+        <li><div class="step-body"><p><strong>Check your browser account.</strong> If your browser is already signed in to claude.ai with a different account, sign out there first, or paste the sign-in link into a private window.</p></div></li>
+        <li><div class="step-body"><p><strong>Sign in from the profile's window</strong> using email or Google.</p></div></li>
+        <li><div class="step-body"><p><strong>Allow keychain access once.</strong> macOS asks whether the profile may use “Claude Safe Storage”. Enter your Mac login password and choose <strong>Always Allow</strong>.</p></div></li>
+        <li><div class="step-body"><p>Click <strong>I'm Signed In</strong>. Sign-in links go back to your original Claude app.</p></div></li>
+      </ol>
+      <p class="note warn"><strong>Profile apps support email and Google sign-in.</strong> Passkeys, hardware security keys and Microsoft single sign-on depend on the original app's signature, so use them in your Default profile.</p>
+    </section>
+
+    <section id="terminal" aria-labelledby="terminal-h">
+      <h2 id="terminal-h">Terminal commands</h2>
+      <p>Each profile can have its own Claude Code command. It keeps a separate Claude Code sign-in, settings and history, and accepts every option <code>claude</code> does.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Type</th><th scope="col">What happens</th></tr></thead>
+          <tbody>
+            <tr><td><code>claude-work</code></td><td>Starts Claude Code with the Work profile. The first time, sign in with your Work account.</td></tr>
+            <tr><td><code>claude-personal -c</code></td><td>Continues your last Personal conversation.</td></tr>
+            <tr><td><code>claude</code></td><td>Unchanged. Still uses your Default account.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Commands are small scripts in <code>~/.local/bin</code>. Use the terminal button next to a profile in the menu, or <strong>Open in Terminal</strong> in the Profiles window, to start one without typing. The first time, macOS asks to let the app control Terminal.</p>
+      <p>If Terminal says <code>command not found</code>, add <code>~/.local/bin</code> to your PATH, then open a new Terminal window:</p>
+      <div class="code"><pre><code>echo 'export PATH="$HOME/.local/bin:$PATH"' &gt;&gt; ~/.zshrc</code></pre></div>
+    </section>
+
+    <section id="updates" aria-labelledby="updates-h">
+      <h2 id="updates-h">After Claude updates</h2>
+      <p>Your original Claude app updates itself. Profile apps keep running the version they were made from until you rebuild them. When that happens, the menu shows <strong>Claude was updated</strong>. Click <strong>Rebuild</strong>; sign-ins and chats are kept. Quit a profile before rebuilding it, or let the app quit it for you.</p>
+      <p>After a rebuild, macOS may ask for “Claude Safe Storage” access once more. Choose <strong>Always Allow</strong> again.</p>
+    </section>
+
+    <section id="troubleshooting" aria-labelledby="troubleshooting-h">
+      <h2 id="troubleshooting-h">Troubleshooting</h2>
+      <details>
+        <summary>“Multi Profile for Claude” can't be opened because Apple cannot check it</summary>
+        <div>
+          <p>The quarantine flag is still set. Run the command below, or use <strong>Open Anyway</strong> in System Settings → Privacy &amp; Security.</p>
+          <div class="code"><pre><code>xattr -dr com.apple.quarantine "/Applications/Multi Profile for Claude.app"</code></pre></div>
+        </div>
+      </details>
+      <details>
+        <summary>A profile opened my main account instead of a new one</summary>
+        <div>
+          <p>The browser finished signing in with the account it already had. Sign out of claude.ai in the browser (or use a private window), then choose <strong>Sign In…</strong> for the profile again.</p>
+        </div>
+      </details>
+      <details>
+        <summary>The sign-in link opened my original Claude app</summary>
+        <div>
+          <p>Sign-in links only go to a profile while its sign-in assistant is open, for up to 10 minutes. Choose <strong>Sign In…</strong> again and finish within that time.</p>
+        </div>
+      </details>
+      <details>
+        <summary>A profile won't open after Claude updated</summary>
+        <div>
+          <p>Choose <strong>Rebuild</strong> for that profile in the Profiles window. Its data folder isn't touched.</p>
+        </div>
+      </details>
+      <details>
+        <summary><code>claude-work</code> says it already exists</summary>
+        <div>
+          <p>Something else in <code>~/.local/bin</code> already uses that name, so the app suggests <code>claude-work-2</code> and leaves your file alone. Commands made by this app contain the line <code># Created by Multi Profile for Claude</code>.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="uninstall" aria-labelledby="uninstall-h">
+      <h2 id="uninstall-h">Uninstall</h2>
+      <p>First choose <strong>Profiles → Remove All Profiles…</strong> in the app's menu (shown while the Profiles window is open). It removes every profile app and terminal command it created, and asks whether to keep their chats and sign-ins. Then remove the app:</p>
+      <div class="code"><pre><code>brew uninstall --cask multi-profile-for-claude</code></pre></div>
+      <p>Add <code>--zap</code> to also delete profile apps and their data. Without Homebrew, run <code>scripts/uninstall.sh</code> from the source folder (add <code>--data</code> to delete profile data). Your original Claude app is never touched.</p>
+    </section>
+
+    <section id="support" class="support" aria-labelledby="support-h">
+      <img src="Resources/donate-qr.png" alt="VietQR code for a transfer to TPBank account 0175 5161 701, NGUYEN MANH DUC">
+      <div class="support-text">
+        <h2 id="support-h">Support this project</h2>
+        <p>Multi Profile for Claude is free and open source. If it saves you some account juggling, you can support it with a bank transfer. Scan the code with any Vietnamese banking app (VietQR, Napas 247), or transfer to:</p>
+        <dl class="bank">
+          <dt>Bank</dt><dd>TPBank</dd>
+          <dt>Account name</dt><dd>NGUYEN MANH DUC</dd>
+          <dt>Account number</dt><dd><code>0175 5161 701</code><button class="copy-inline" type="button" data-copy="01755161701" aria-label="Copy account number">Copy</button></dd>
+        </dl>
+        <p>The same code is in the app under <strong>About and Donate…</strong>.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>MIT License · <a href="https://github.com/manhduc-nguyen/multi-profile-for-claude">Source on GitHub</a> · <a href="https://github.com/manhduc-nguyen/multi-profile-for-claude/issues">Report a problem</a></p>
+      <p>Not affiliated with or endorsed by Anthropic. Claude is a trademark of Anthropic, PBC.</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  // Install method tabs. Without JavaScript, every method stays visible.
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(tab); });
+    tab.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      select(next);
+      next.focus();
+    });
+  });
+  select(tabs[0]);
+
+  // Copy buttons on every code block.
+  document.querySelectorAll('.code').forEach(function (box) {
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'copy';
+    button.textContent = 'Copy';
+    button.setAttribute('aria-label', 'Copy command');
+    box.appendChild(button);
+    button.addEventListener('click', function () {
+      var text = box.querySelector('code').textContent;
+      function done() {
+        button.textContent = 'Copied';
+        button.setAttribute('data-done', '');
+        setTimeout(function () { button.textContent = 'Copy'; button.removeAttribute('data-done'); }, 1600);
+      }
+      function selectText() {
+        var range = document.createRange();
+        range.selectNodeContents(box.querySelector('code'));
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        button.textContent = 'Press ⌘C';
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, selectText);
+      } else {
+        selectText();
+      }
+    });
+  });
+
+  // Copy buttons for single values, such as the bank account number.
+  document.querySelectorAll('[data-copy]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var value = button.getAttribute('data-copy');
+      function done() {
+        button.textContent = 'Copied';
+        button.setAttribute('data-done', '');
+        setTimeout(function () { button.textContent = 'Copy'; button.removeAttribute('data-done'); }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(done, function () { button.textContent = value; });
+      } else {
+        button.textContent = value;
+      }
+    });
+  });
+
+  // Theme: System → Light → Dark.
+  var root = document.documentElement;
+  var label = document.getElementById('theme-label');
+  var order = ['system', 'light', 'dark'];
+  function apply(theme) {
+    if (theme === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', theme);
+    label.textContent = 'Theme: ' + theme.charAt(0).toUpperCase() + theme.slice(1);
+  }
+  var saved = 'system';
+  try { saved = localStorage.getItem('mpfc-theme') || 'system'; } catch (e) {}
+  apply(order.indexOf(saved) >= 0 ? saved : 'system');
+  document.getElementById('theme-toggle').addEventListener('click', function () {
+    var current = root.getAttribute('data-theme') || 'system';
+    var next = order[(order.indexOf(current) + 1) % order.length];
+    apply(next);
+    try { localStorage.setItem('mpfc-theme', next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

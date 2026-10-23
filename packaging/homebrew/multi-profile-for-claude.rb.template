@@ -1,0 +1,37 @@
+cask "@CASK_TOKEN@" do
+  version "@VERSION@"
+  sha256 "@SHA256@"
+
+  url "https://github.com/@GITHUB_USER@/@REPO_NAME@/releases/download/v#{version}/Multi-Profile-for-Claude-#{version}.zip"
+  name "Multi Profile for Claude"
+  desc "Run several Claude desktop accounts side by side"
+  homepage "https://github.com/@GITHUB_USER@/@REPO_NAME@"
+
+  depends_on macos: :ventura
+
+  app "Multi Profile for Claude.app"
+
+  # The app is not notarized by Apple, so clear the download quarantine flag.
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:         ["-dr", "com.apple.quarantine", "{{appdir}}/Multi Profile for Claude.app"],
+        must_succeed: false
+  end
+
+  uninstall quit: "@BUNDLE_ID@"
+
+  zap trash: [
+    "~/Applications/Claude Profiles",
+    "~/Library/Application Support/MultiProfileForClaude",
+    "~/Library/Preferences/@BUNDLE_ID@.plist",
+  ]
+
+  caveats <<~EOS
+    Multi Profile for Claude is not notarized by Apple, so this cask removes the
+    download quarantine flag after installing it.
+
+    `brew uninstall --zap` also removes your profile apps and their data.
+    Terminal commands such as claude-work are removed by the app
+    (Profiles → Remove All Profiles…) or can be deleted from ~/.local/bin.
+  EOS
+end

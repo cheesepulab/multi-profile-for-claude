@@ -1,0 +1,14 @@
+# Copy to scripts/config.local.sh (ignored by git) and fill in.
+#
+# Optional: sign releases with the free "Apple Development" certificate of your Personal Team,
+# so macOS remembers the Terminal permission across updates. Leave both empty to sign ad-hoc.
+#
+# Run scripts/signing-identities.sh to see each certificate's real team. Use one whose team is
+# your own name. Never use a company certificate: its team shows in every public release.
+
+# The certificate's SHA-1 hash from scripts/signing-identities.sh (exact, even when two
+# certificates share a name).
+SIGN_IDENTITY="0123456789ABCDEF0123456789ABCDEF01234567"
+
+# Your Personal Team ID. The build checks the signed app against it and stops on a mismatch.
+SIGN_TEAM_ID="ABCDE12345"

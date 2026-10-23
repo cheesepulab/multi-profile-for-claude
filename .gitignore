@@ -1,0 +1,7 @@
+.DS_Store
+.build/
+.swiftpm/
+dist/
+*.icns
+*.iconset/
+scripts/config.local.sh
