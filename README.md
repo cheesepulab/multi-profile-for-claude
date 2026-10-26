@@ -8,7 +8,7 @@ Run several Claude accounts side by side on your Mac — work, personal, a clien
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-https://github.com/user-attachments/assets/7d8ea541-c14d-4aa0-b710-5af52cd09661
+https://github.com/user-attachments/assets/a843ad92-71ff-477a-85b0-a4d5b316e06d
 
 If the video doesn't play here, [watch it on YouTube](https://www.youtube.com/watch?v=W8z22g18PC8).
 
