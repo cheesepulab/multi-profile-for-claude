@@ -17,12 +17,21 @@ MARKER="# Created by Multi Profile for Claude"
 SUPPORT="$HOME/Library/Application Support/MultiProfileForClaude"
 PROFILE_APPS="$HOME/Applications/Claude Profiles"
 
-osascript -e "tell application id \"${BUNDLE_ID}\" to quit" >/dev/null 2>&1 || true
+# The current bundle ID and the ones older builds used.
+ALL_BUNDLE_IDS="$BUNDLE_ID ${LEGACY_BUNDLE_IDS:-}"
+
+for id in $ALL_BUNDLE_IDS; do
+    osascript -e "tell application id \"${id}\" to quit" >/dev/null 2>&1 || true
+done
 
 for app in "/Applications/${APP_NAME}.app" "$HOME/Applications/${APP_NAME}.app"; do
-    if [ -d "$app" ] && [ "$(defaults read "$app/Contents/Info" CFBundleIdentifier 2>/dev/null)" = "$BUNDLE_ID" ]; then
-        rm -rf "$app" && echo "Removed $app"
-    fi
+    [ -d "$app" ] || continue
+    app_id="$(defaults read "$app/Contents/Info" CFBundleIdentifier 2>/dev/null || true)"
+    for id in $ALL_BUNDLE_IDS; do
+        if [ "$app_id" = "$id" ]; then
+            rm -rf "$app" && echo "Removed $app"
+        fi
+    done
 done
 
 if [ -d "$PROFILE_APPS" ]; then
@@ -49,5 +58,7 @@ if $DELETE_DATA; then
 else
     echo "Kept profile data in $SUPPORT (run with --data to delete it)."
 fi
-defaults delete "$BUNDLE_ID" >/dev/null 2>&1 || true
+for id in $ALL_BUNDLE_IDS; do
+    defaults delete "$id" >/dev/null 2>&1 || true
+done
 echo "Done. Your original Claude app was not changed."

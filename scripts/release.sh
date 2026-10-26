@@ -34,6 +34,7 @@ sed -e "s|@CASK_TOKEN@|${CASK_TOKEN}|g" \
     -e "s|@REPO_OWNER@|${REPO_OWNER}|g" \
     -e "s|@REPO_NAME@|${REPO_NAME}|g" \
     -e "s|@BUNDLE_ID@|${BUNDLE_ID}|g" \
+    -e "s|@LEGACY_BUNDLE_ID@|${LEGACY_BUNDLE_IDS%% *}|g" \
     packaging/homebrew/${CASK_TOKEN}.rb.template > "$CASK"
 
 cat <<EOF

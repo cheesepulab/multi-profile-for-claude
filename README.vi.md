@@ -29,10 +29,10 @@ Cần macOS 13 Ventura trở lên và [ứng dụng Claude cho máy tính](https
 ### Homebrew (khuyên dùng)
 
 ```bash
-brew install --cask manhduc-nguyen/tap/multi-profile-for-claude
+brew install --cask cheesepulab/tap/multi-profile-for-claude
 ```
 
-Ứng dụng chưa được Apple công chứng (notarize) vì đây là dự án miễn phí, nên cask sẽ xóa cờ cách ly (quarantine) của tệp tải về sau khi cài. Bạn có thể đọc [cask](https://github.com/manhduc-nguyen/homebrew-tap/blob/main/Casks/multi-profile-for-claude.rb) trước khi cài.
+Ứng dụng chưa được Apple công chứng (notarize) vì đây là dự án miễn phí, nên cask sẽ xóa cờ cách ly (quarantine) của tệp tải về sau khi cài. Bạn có thể đọc [cask](https://github.com/cheesepulab/homebrew-tap/blob/main/Casks/multi-profile-for-claude.rb) trước khi cài.
 
 ### Tải về
 

@@ -18,12 +18,17 @@ cask "@CASK_TOKEN@" do
         must_succeed: false
   end
 
-  uninstall quit: "@BUNDLE_ID@"
+  # Also the bundle ID that builds before 0.1.1 used.
+  uninstall quit: [
+    "@BUNDLE_ID@",
+    "@LEGACY_BUNDLE_ID@",
+  ]
 
   zap trash: [
     "~/Applications/Claude Profiles",
     "~/Library/Application Support/MultiProfileForClaude",
     "~/Library/Preferences/@BUNDLE_ID@.plist",
+    "~/Library/Preferences/@LEGACY_BUNDLE_ID@.plist",
   ]
 
   caveats <<~EOS

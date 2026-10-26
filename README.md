@@ -29,10 +29,10 @@ Requires macOS 13 Ventura or later and the [Claude desktop app](https://claude.a
 ### Homebrew (recommended)
 
 ```bash
-brew install --cask manhduc-nguyen/tap/multi-profile-for-claude
+brew install --cask cheesepulab/tap/multi-profile-for-claude
 ```
 
-The app isn't notarized by Apple (it's a free project), so the cask clears the download quarantine flag after installing. You can read [the cask](https://github.com/manhduc-nguyen/homebrew-tap/blob/main/Casks/multi-profile-for-claude.rb) before installing.
+The app isn't notarized by Apple (it's a free project), so the cask clears the download quarantine flag after installing. You can read [the cask](https://github.com/cheesepulab/homebrew-tap/blob/main/Casks/multi-profile-for-claude.rb) before installing.
 
 ### Download
 
