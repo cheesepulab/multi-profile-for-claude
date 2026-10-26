@@ -2,10 +2,10 @@ cask "@CASK_TOKEN@" do
   version "@VERSION@"
   sha256 "@SHA256@"
 
-  url "https://github.com/@GITHUB_USER@/@REPO_NAME@/releases/download/v#{version}/Multi-Profile-for-Claude-#{version}.zip"
+  url "https://github.com/@REPO_OWNER@/@REPO_NAME@/releases/download/v#{version}/Multi-Profile-for-Claude-#{version}.zip"
   name "Multi Profile for Claude"
   desc "Run several Claude desktop accounts side by side"
-  homepage "https://github.com/@GITHUB_USER@/@REPO_NAME@"
+  homepage "https://github.com/@REPO_OWNER@/@REPO_NAME@"
 
   depends_on macos: :ventura
 

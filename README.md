@@ -36,7 +36,7 @@ The app isn't notarized by Apple (it's a free project), so the cask clears the d
 
 ### Download
 
-1. Download the latest `Multi-Profile-for-Claude-<version>.zip` from [Releases](https://github.com/manhduc-nguyen/multi-profile-for-claude/releases) and move the app to `/Applications`.
+1. Download the latest `Multi-Profile-for-Claude-<version>.zip` from [Releases](https://github.com/cheesepulab/multi-profile-for-claude/releases) and move the app to `/Applications`.
 2. Because the app isn't notarized, macOS blocks the first launch. Either run
    ```bash
    xattr -dr com.apple.quarantine "/Applications/Multi Profile for Claude.app"
@@ -48,7 +48,7 @@ The app isn't notarized by Apple (it's a free project), so the cask clears the d
 Needs Xcode 16 or later (or its command line tools with Swift 6).
 
 ```bash
-git clone https://github.com/manhduc-nguyen/multi-profile-for-claude.git
+git clone https://github.com/cheesepulab/multi-profile-for-claude.git
 cd multi-profile-for-claude
 scripts/install.sh
 ```

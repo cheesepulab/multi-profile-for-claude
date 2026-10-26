@@ -6,9 +6,10 @@ APP_NAME="Multi Profile for Claude"
 VERSION="${VERSION:-0.1.0}"
 BUILD_NUMBER="${BUILD_NUMBER:-$(git rev-list --count HEAD 2>/dev/null || echo 1)}"
 
-GITHUB_USER="manhduc-nguyen"
+REPO_OWNER="cheesepulab"             # GitHub owner of this repo and its releases
 REPO_NAME="multi-profile-for-claude"
-TAP_NAME="tap"                      # users install from $GITHUB_USER/$TAP_NAME (repo: homebrew-$TAP_NAME)
+TAP_OWNER="manhduc-nguyen"          # users install from $TAP_OWNER/$TAP_NAME (repo: $TAP_OWNER/homebrew-$TAP_NAME)
+TAP_NAME="tap"
 CASK_TOKEN="multi-profile-for-claude"
 
 COPYRIGHT_NAME="Nguyen Manh Duc"
@@ -18,8 +19,10 @@ DONATE_BANK="TPBank"
 DONATE_ACCOUNT_NAME="NGUYEN MANH DUC"
 DONATE_ACCOUNT_NUMBER="0175 5161 701"
 
-BUNDLE_ID="io.github.${GITHUB_USER}.multiprofileforclaude"
-REPO_URL="https://github.com/${GITHUB_USER}/${REPO_NAME}"
+# Fixed on purpose: changing it would make macOS treat the app as a new one, and existing
+# installs and profiles would lose track of it. Don't derive it from the repo owner.
+BUNDLE_ID="io.github.manhduc-nguyen.multiprofileforclaude"
+REPO_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
 DONATE_URL="${REPO_URL}/blob/main/DONATE.md"
 
 # Leave empty for ad-hoc signing. Set it in scripts/config.local.sh to sign with your

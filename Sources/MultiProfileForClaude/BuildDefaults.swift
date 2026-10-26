@@ -2,8 +2,8 @@
 // Used when the app runs without its packaged Info.plist, for example from Xcode.
 enum BuildDefaults {
     static let bundleIDPrefix = "io.github.manhduc-nguyen.multiprofileforclaude"
-    static let repositoryURL = "https://github.com/manhduc-nguyen/multi-profile-for-claude"
-    static let donateURL = "https://github.com/manhduc-nguyen/multi-profile-for-claude/blob/main/DONATE.md"
+    static let repositoryURL = "https://github.com/cheesepulab/multi-profile-for-claude"
+    static let donateURL = "https://github.com/cheesepulab/multi-profile-for-claude/blob/main/DONATE.md"
     static let donateBank = "TPBank"
     static let donateAccountName = "NGUYEN MANH DUC"
     static let donateAccountNumber = "0175 5161 701"

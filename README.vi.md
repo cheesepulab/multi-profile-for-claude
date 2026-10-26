@@ -36,7 +36,7 @@ brew install --cask manhduc-nguyen/tap/multi-profile-for-claude
 
 ### Tải về
 
-1. Tải tệp `Multi-Profile-for-Claude-<phiên bản>.zip` mới nhất từ [Releases](https://github.com/manhduc-nguyen/multi-profile-for-claude/releases) và kéo ứng dụng vào `/Applications`.
+1. Tải tệp `Multi-Profile-for-Claude-<phiên bản>.zip` mới nhất từ [Releases](https://github.com/cheesepulab/multi-profile-for-claude/releases) và kéo ứng dụng vào `/Applications`.
 2. Vì ứng dụng chưa được công chứng, macOS sẽ chặn lần mở đầu tiên. Hãy chạy
    ```bash
    xattr -dr com.apple.quarantine "/Applications/Multi Profile for Claude.app"
@@ -48,7 +48,7 @@ brew install --cask manhduc-nguyen/tap/multi-profile-for-claude
 Cần Xcode 16 trở lên (hoặc bộ command line tools có Swift 6).
 
 ```bash
-git clone https://github.com/manhduc-nguyen/multi-profile-for-claude.git
+git clone https://github.com/cheesepulab/multi-profile-for-claude.git
 cd multi-profile-for-claude
 scripts/install.sh
 ```

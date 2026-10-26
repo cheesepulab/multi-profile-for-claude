@@ -31,7 +31,7 @@ echo "==> Writing cask"
 sed -e "s|@CASK_TOKEN@|${CASK_TOKEN}|g" \
     -e "s|@VERSION@|${VERSION}|g" \
     -e "s|@SHA256@|${SHA256}|g" \
-    -e "s|@GITHUB_USER@|${GITHUB_USER}|g" \
+    -e "s|@REPO_OWNER@|${REPO_OWNER}|g" \
     -e "s|@REPO_NAME@|${REPO_NAME}|g" \
     -e "s|@BUNDLE_ID@|${BUNDLE_ID}|g" \
     packaging/homebrew/${CASK_TOKEN}.rb.template > "$CASK"
@@ -45,11 +45,11 @@ Release ${VERSION} is ready:
 
 Next steps (nothing has been uploaded):
   1. git tag v${VERSION} && git push origin v${VERSION}
-  2. gh release create v${VERSION} "${ZIP}" --repo ${GITHUB_USER}/${REPO_NAME} --title "${VERSION}" --generate-notes
-  3. Copy ${CASK} to Casks/${CASK_TOKEN}.rb in ${GITHUB_USER}/homebrew-${TAP_NAME}, then:
+  2. gh release create v${VERSION} "${ZIP}" --repo ${REPO_OWNER}/${REPO_NAME} --title "${VERSION}" --generate-notes
+  3. Copy ${CASK} to Casks/${CASK_TOKEN}.rb in ${TAP_OWNER}/homebrew-${TAP_NAME}, then:
        brew style --fix Casks/${CASK_TOKEN}.rb
        git commit -am "${CASK_TOKEN} ${VERSION}" && git push
-       brew audit --cask --online ${GITHUB_USER}/${TAP_NAME}/${CASK_TOKEN}
+       brew audit --cask --online ${TAP_OWNER}/${TAP_NAME}/${CASK_TOKEN}
   4. Install it like a user would:
-       brew install --cask ${GITHUB_USER}/${TAP_NAME}/${CASK_TOKEN}
+       brew install --cask ${TAP_OWNER}/${TAP_NAME}/${CASK_TOKEN}
 EOF
